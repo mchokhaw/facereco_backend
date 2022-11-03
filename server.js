@@ -12,11 +12,8 @@ const image = require('./controllers/image');
   const db = knex({
     client: 'pg',
     connection: {
-    host : '127.0.0.1',
-    port : 5432,
-    user : 'postgres',
-    password : 'Windsor@123',
-    database : 'smartbrain'
+    connectionString : process.env.DATABASE_URL,
+    ssl: true,
   }
 });
 
@@ -35,3 +32,5 @@ app.post('/imageurl', (req, res) => { image.handleApiCall(req, res)})
 app.listen(process.env.PORT || 3001, ()=> {
   console.log(`app is running on port ${process.env.PORT}`);
 })
+
+// http address:  https://immense-reaches-52663.herokuapp.com
